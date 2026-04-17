@@ -20,8 +20,24 @@ Swiss parliamentary speeches hand-labelled for whether they address the topic of
 
 ### 2. Biodiversity Sentences (Binary Classification)
 
-Sentences drawn from Swiss parliamentary *Geschäfte* (pursuits) (i.e., Federal Council drafts, motions, interpellations, initiatives, and requests). Each sentence is classified as to whether it addresses a biodiversity topic.
+- **File:** `biodiversität_labelhuman_labelembed2discover.csv`
+- **Size:** 2,537 sentences
+- **Language:** German
+- **Source:** Swiss parliamentary *Geschäfte* (pursuits) — Federal Council drafts, motions, interpellations, initiatives, and requests — spanning multiple legislative periods
 
+Each sentence is classified as to whether it addresses a biodiversity topic. The dataset includes both a human annotation and an automated label produced by *embed2discover* (an embedding-based retrieval method), enabling direct comparison of human vs. automated labelling performance.
+
+**Columns:**
+
+| Column | Description |
+|---|---|
+| `sentence` | Raw German sentence extracted from a parliamentary document |
+| `label_human` | Human annotation: `1` = biodiversity-related, `0` = not related |
+| `label_embed2discover` | Automated label from the embed2discover method: `1` = biodiversity-related, `0` = not related |
+| `corpus_filename` | Path to the source document within the corpus (format: `period/documentID.txt`) |
+| `start_pos` | Character offset where the sentence begins in the source document |
+| `end_pos` | Character offset where the sentence ends in the source document |
+| `file` | Duplicate of `corpus_filename` |
 
 
 ### 3. Pursuits by Regulation Schema (9-Class Classification)

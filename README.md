@@ -2,6 +2,37 @@
 
 ## Idea
 
+This repository implements a three-phase pipeline for classifying social science text using large language models (LLMs), with a focus on reproducibility and iterative prompt engineering.
+
+### Phase 1 — Model & Prompt Selection (`Scripts/`, `Prompt/`)
+
+A script tests combinations of models (e.g. GPT, Gemini) and prompting strategies (simple zero-shot prompt vs. few-shot prompt) against a gold-standard dataset. Classification tasks are evaluated using binary metrics (F1) or continuous metrics (RMSE) depending on the task type. API credentials are stored separately in `Access_Tokens_Keys/`.
+
+> ⚠️ **Note:** Be mindful of API costs — paid vs. unpaid model tiers differ substantially in price.
+
+### Phase 2 — Error Analysis
+
+Once results are in, misclassifications are inspected through a structured review table that breaks down outcomes by TP / TN / FP / FN, with the original text alongside the model's decision. A helper function appends new examples to this table. Improvements are made **one change at a time** so the effect of each adjustment on outcomes can be isolated.
+
+### Phase 3 — Finalised Classifier (`Output/`)
+
+With a model selected, the prompt is refined with:
+- Adapted task description and illustrative examples
+- Tie-break rules for borderline cases
+
+The final classifier is run over the full corpus and results are written to `Output/`.
+
+### Repository Structure
+
+| Folder / File | Purpose |
+|---|---|
+| `Gold_Standard_Data/` | Hand-labelled datasets used for evaluation |
+| `Classification_Task/Scripts/` | Classification and evaluation scripts |
+| `Classification_Task/Prompt/` | Prompt templates and few-shot example sets |
+| `Classification_Task/Output/` | Model outputs and evaluation results |
+| `Classification_Task/Access_Tokens_Keys/` | API keys (not version-controlled) |
+
+
 
 ## Test Datasets
 
